@@ -1,7 +1,0 @@
-[discord]
-token = "MTM1MTI4MTIzNzU3NDI4NzU4Mw.G2PZlv.u_aDEYz4tf93L5Vj7Wru_PQSmSj350YRkb0Fqw" # Do not share this with anyone!
-
-[ollama]
-model = "emma" # Some examples of valid input are "llama3.2" and "llama2-uncensored"
-# remember to download your model before usage with ollama pull
-# example: ollama pull llama3.2
