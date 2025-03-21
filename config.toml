@@ -1,7 +1,7 @@
 [discord]
-token = "MTM1MTI4MTIzNzU3NDI4NzU4Mw.G2PZlv.u_aDEYz4tf93L5Vj7Wru_PQSmSj350YRkb0Fqw" # Do not share this with anyone!
+token = "MTM1MTI4MTIzNzU3NDI4NzU4Mw.G2PZlv.u_aDEYz4tf93L5Vj7Wru_PQSmSj350YRkb0Fqw" #coloque seu token aqui
+# Não divida tokens, isso é bem pessoal
 
 [ollama]
-model = "emma" # Some examples of valid input are "llama3.2" and "llama2-uncensored"
-# remember to download your model before usage with ollama pull
-# example: ollama pull llama3.2
+model = "emma" #coloque seu modelo de IA aqui!
+# lembre-se de instalar um modelo, passo de 3 de preparação no README.md
