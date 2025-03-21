@@ -3,19 +3,19 @@ Uma robo de conversação 100% gratuito para jogar conversa fora, ter dicas de j
 
 ## Instalação
 
-                    Passos de preparação
+**Passos de preparação**
 
 1. [Instale o Python](https://www.python.org/downloads/)
 2. [Instale o Ollama](https://ollama.com/download/)
 3. Instale o modelo pelo terminal `ollama pull llama3.2-vision` (emma.modelfile é 100% funcional com llama 3.2-vision)
 
-                    Passos de costumização (opcional)
+**Passos de costumização (opcional)**
 
 4. Abra a pasta onde o arquivo `emma.modelfile` está e abra o terminal lá
 5. Use o comando `notepad emma.modelfile` para modificar o modelo caso queira, apois modificar salve as alterações
 6. Sem sair do CMD crie a versão modificada do llama 3.2-vision executando o comando ` ollama  create emma --file emma.modelfile`
 
-                    Passos de desenvolvimento
+**Passos de desenvolvimento**
 
 7. Use o terminal integrado do projeto para instalar requerimentos do llama `pip install discord.py ollama requests`
 8. Abra `config.toml` coloque o seu TOKEN e seu modelo de IA (se pulou costumização insira `"llama3.2-vision"` se não `"emma"`)
