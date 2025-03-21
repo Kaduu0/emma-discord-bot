@@ -61,6 +61,10 @@ async def generate_response(prompt):
                 assistant_message = response_data['message']['content']
                 assistant_message = limit_message_to_five_lines(assistant_message)
                 conversation_history.append({"role": "assistant", "content": assistant_message})
+
+                # Salvar histórico atualizado
+                save_conversation_history()
+                
                 return assistant_message
             except Exception as e:
                 print(f"Erro ao processar resposta: {e}")
@@ -84,6 +88,14 @@ async def get_response_from_cache_or_generate(prompt):
 # Fila para processar mensagens uma por vez
 processing_queue = asyncio.Queue()
 
+# Lista de itens disponíveis para compra com emojis
+itens_para_venda = [
+    "🍪 Cookie",
+    "🧁 Cupcake",
+    "🥛 Leite",
+    "☕ Café"
+]
+
 @client.event
 async def on_ready():
     print(f'Logado como {client.user}')
@@ -93,10 +105,9 @@ async def on_message(message):
     if message.author == client.user or message.author.bot:
         return
 
-    # Verifica se o bot foi mencionado
+    # Verifica se a mensagem menciona a IA
     if client.user in message.mentions:
         prompt = message.content.replace(f"<@{client.user.id}>", "").strip()
-
         await processing_queue.put((message, prompt))
 
         if processing_queue.qsize() == 1:
@@ -109,6 +120,27 @@ async def on_message(message):
                         await current_message.channel.send(response_with_mention)
                 except discord.errors.Forbidden:
                     print(f"Erro: Sem permissão para enviar mensagem em {current_message.channel.name}")
+
+    # Verifica se a mensagem menciona a loja para comprar
+    elif "@loja" in message.content:
+        descricao_itens = "\n".join([f"{i+1}. {item}" for i, item in enumerate(itens_para_venda)])
+        mensagem = f"Bem vindo(a)! gostaria de algo?\n\n{descricao_itens}\n\nEscolha o número correspondente ao seu pedido!"
+        await message.channel.send(mensagem)
+        
+        def check(m):
+            return m.author == message.author and m.channel == message.channel and m.content.isdigit()
+        
+        try:
+            resposta = await client.wait_for("message", check=check, timeout=30)
+            escolha = int(resposta.content)
+            
+            if 1 <= escolha <= len(itens_para_venda):
+                item_escolhido = itens_para_venda[escolha - 1]
+                await message.channel.send(f"<@{message.author.id}> comprou {item_escolhido}! volte sempre!")
+            else:
+                await message.channel.send(f"<@{message.author.id}>, essa opção não está disponível.")
+        except asyncio.TimeoutError:
+            await message.channel.send(f"precisa de mais tempo <@{message.author.id}>? Me chame de novo quando se decidir!")
 
 # Executa o bot
 client.run(TOKEN)
