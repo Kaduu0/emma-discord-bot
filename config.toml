@@ -1,5 +1,5 @@
 [discord]
-token = "MTM1MTI4MTIzNzU3NDI4NzU4Mw.G2PZlv.u_aDEYz4tf93L5Vj7Wru_PQSmSj350YRkb0Fqw" #coloque seu token aqui
+token = "TOKEN AQUI!" #coloque seu token aqui
 # Não divida tokens, isso é bem pessoal
 
 [ollama]
