@@ -39,7 +39,7 @@ client = discord.Client(intents=intents)
 # Limitar histórico de conversação
 def limit_conversation_history():
     global conversation_history
-    max_history_length = 5
+    max_history_length = 10
     if len(conversation_history) > max_history_length:
         conversation_history = conversation_history[-max_history_length:]
 
